@@ -14,14 +14,14 @@ class PrimeTest {
 
     @Test
     @DisplayName("Testing range without primes")
-    void testRangeWithNoPrimes() {
+    void testWithoutPrimes() {
         Prime prime = new Prime(24, 25);
         assertTrue(prime.getPrimes().isEmpty());
     }
 
     @Test
     @DisplayName("Testing a single prime")
-    public void testSingleNumberRange() {
+    public void testSinglePrime() {
         Prime prime = new Prime(7, 7);
         assertNotNull(prime.getPrimes());
         assertEquals(1, prime.getCount());
@@ -31,7 +31,7 @@ class PrimeTest {
 
     @Test
     @DisplayName("Initializing of the constructor test")
-    void testConstructorInitializer() {
+    void testConstructor() {
         Prime prime = new Prime(0, 1000);
         assertNotNull(prime.getPrimes());
         assertFalse(prime.getPrimes().isEmpty());
@@ -39,7 +39,7 @@ class PrimeTest {
 
     @Test
     @DisplayName("Initializing of the constructor, test for a small valid range")
-    void testPrimeCalculationForSmallRange() {
+    void testPrimeSmallRange() {
         Prime prime = new Prime(0, 10);
 
         int[] expectedPrimes = {2, 3, 5, 7};
@@ -60,21 +60,21 @@ class PrimeTest {
 
     @Test
     @DisplayName("Test for a very high upper limit")
-    void testExtremeUpperLimit() {
+    void testUpperLimit() {
         Prime prime = new Prime(998, 1000);
         assertTrue(prime.getPrimes().isEmpty());
     }
 
     @Test
     @DisplayName("Test for a very low lower limit")
-    void testExtremeLowerLimit() {
+    void testLowerLimit() {
         Prime prime = new Prime(0, 2);
         assertEquals(List.of(2), prime.getPrimes());
     }
 
     @Test
     @DisplayName("Initializing of the constructor, test for the boundary values")
-    void testConstructorForBoundaryValues() {
+    void testConstructorBoundries() {
         Prime primeAtZero = new Prime(0, 0);
         assertTrue(primeAtZero.getPrimes().isEmpty());
 
@@ -84,7 +84,7 @@ class PrimeTest {
 
     @Test
     @DisplayName("getPrimes for valid lower bound range test")
-    void testGetPrimesLowerInterval() {
+    void testPrimeLowerInterval() {
         Prime prime = new Prime(0, 100);
         List<Integer> expectedPrimes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37,
                 41, 43,47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97);
@@ -93,7 +93,7 @@ class PrimeTest {
 
     @Test
     @DisplayName("getPrimes for valid upper bound range test")
-    void testGetPrimesUpperInterval() {
+    void testPrimeUpperInterval() {
         Prime prime = new Prime(900, 1000);
         List<Integer> expectedPrimes = Arrays.asList(907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997);
         assertEquals(expectedPrimes, prime.getPrimes());
@@ -101,14 +101,14 @@ class PrimeTest {
 
     @Test
     @DisplayName("Count primes for a known range test")
-    void testCountOfPrimes() {
+    void testCountPrimes() {
         Prime prime = new Prime(0, 10);
         assertEquals(4, prime.getCount());
     }
 
     @Test
     @DisplayName("The sum of primes for known range test")
-    void testSumOfPrimes() {
+    void testSumPrimes() {
         Prime prime = new Prime(0, 10);
         int expectedSum = 2 + 3 + 5 + 7;
         assertEquals(expectedSum, prime.getSumOfPrimes());
@@ -116,14 +116,14 @@ class PrimeTest {
 
     @Test
     @DisplayName("Specific exception test with a message for invalid ranges")
-    void testExceptionMessageForInvalidRange() {
+    void testExceptionInvalidRange() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> new Prime(-1, 1000));
         assertEquals("Hoppsan, fel intervall angivet!", exception.getMessage());
     }
 
     @Test
     @DisplayName("Another specific exception test with a message for inverted ranges")
-    void testExceptionMessageForInvertedRange() {
+    void testExceptionInvertedRange() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> new Prime(1000, 0));
         assertEquals("Hoppsan, fel intervall angivet!", exception.getMessage());
     }
